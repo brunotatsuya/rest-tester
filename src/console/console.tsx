@@ -1,14 +1,13 @@
-import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import Box from '@mui/material/Box';
+import TabPanel from './tab-panel';
 
 import React from "react";
 
 const Console: React.FC = () => {
 
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState('Parameters');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -38,25 +37,30 @@ const Console: React.FC = () => {
 
       <div className="grid grid-cols-12 mt-6 gap-4">
         <div className="col-span-12 md:col-span-6 h-96 bg-zinc-800">
-          <div className="border-b border-gray-200 dark:border-gray-700">
-            <Box sx={{ width: '100%', typography: 'body1' }}>
-              <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="text-white">
-                  <TabList onChange={handleChange} aria-label="lab API tabs example">
-                    <Tab label="Parameters" value="1" />
-                    <Tab label="Body" value="2" />
-                    <Tab label="Headers" value="3" />
-                    <Tab label="Authorization" value="4" />
-                  </TabList>
-                </Box>
-                <TabPanel value="1">Item One</TabPanel>
-                <TabPanel value="2">Item Two</TabPanel>
-                <TabPanel value="3">Item Three</TabPanel>
-                <TabPanel value="4">Item Four</TabPanel>
-              </TabContext>
+          <div className="border-b border-gray-200 dark:border-gray-700 text-white">
+
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  textColor="inherit"
+                  TabIndicatorProps={{ style: { background: "#F97316" } }}
+                >
+                  <Tab label="Parameters" value="Parameters" />
+                  <Tab label="Body" value="Body" />
+                  <Tab label="Headers" value="Headers" />
+                  <Tab label="Authorization" value="Authorization" />
+                </Tabs>
+              </Box>
+              <TabPanel value={value} index="Parameters">Item One</TabPanel>
+              <TabPanel value={value} index="Body">Item Two</TabPanel>
+              <TabPanel value={value} index="Headers">Item Three</TabPanel>
+              <TabPanel value={value} index="Authorization">Item Four</TabPanel>
             </Box>
 
-          </div></div>
+          </div>
+        </div>
         <div className="col-span-12 md:col-span-6 h-96 bg-zinc-800"></div>
       </div>
 
