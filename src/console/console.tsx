@@ -1,9 +1,11 @@
+import React from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import TabPanel from './tab-panel';
 
-import React from "react";
+import TabPanel from './tab-panel';
+import Parameters from './parameters';
+
 
 const Console: React.FC = () => {
 
@@ -37,10 +39,10 @@ const Console: React.FC = () => {
 
       <div className="grid grid-cols-12 mt-6 gap-4">
         <div className="col-span-12 md:col-span-6 h-96 bg-zinc-800">
-          <div className="border-b border-gray-200 dark:border-gray-700 text-white">
+          <div className="border-gray-200 dark:border-gray-700 text-white">
 
             <Box sx={{ width: '100%' }}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
+              <Box sx={{ width: '100%' }}>
                 <Tabs
                   value={value}
                   onChange={handleChange}
@@ -53,7 +55,7 @@ const Console: React.FC = () => {
                   <Tab label="Authorization" value="Authorization" />
                 </Tabs>
               </Box>
-              <TabPanel value={value} index="Parameters">Item One</TabPanel>
+              <TabPanel value={value} index="Parameters"><Parameters /></TabPanel>
               <TabPanel value={value} index="Body">Item Two</TabPanel>
               <TabPanel value={value} index="Headers">Item Three</TabPanel>
               <TabPanel value={value} index="Authorization">Item Four</TabPanel>
