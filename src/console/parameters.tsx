@@ -1,4 +1,7 @@
 import React from 'react';
+import { TiPlus } from 'react-icons/ti';
+import { ImCross } from 'react-icons/im';
+import { MdCheckBox } from 'react-icons/md';
 
 interface Parameter {
   key?: string;
@@ -7,7 +10,7 @@ interface Parameter {
 
 const Parameters: React.FC = () => {
 
-  const [params, setParams] = React.useState(Array<Parameter>());
+  const [params, setParams] = React.useState([{ key: '', value: '' }]);
 
   const handleAddParameterClick = () => {
     setParams(params.concat([{ key: '', value: '' }]));
@@ -32,26 +35,33 @@ const Parameters: React.FC = () => {
 
   return (
     <>
-      <button className="h-full w-10 font-bold text-white bg-orange-500 hover:bg-orange-600 transition-colors rounded-md" onClick={handleAddParameterClick} >
-        Add Parameter
-      </button>
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="font-semibold text-gray-200">Query parameters</h4>
+        <button className="font-bold text-gray-300 hover:text-white py-1 px-1 inline-flex items-center" onClick={handleAddParameterClick} >
+          <TiPlus />
+        </button>
+      </div>
       {params.map((element, index) => {
         return (
-          <div className="grid grid-cols-10 gap-1 pb-1" key={index}>
-            <div className="col-span-4" >
-              <input className=" w-full bg-zinc-700 text-gray-200 py-2 pl-2 focus:outline-none" type="text" placeholder="Key" value={element.key} onChange={(e) => handleParameterChange(index, e.target.value)} />
+            <div className="grid grid-cols-11 gap-1 pb-1" key={index}>
+              <div className="col-span-5" >
+                <input className="bg-zinc-700 text-gray-200 focus:outline-none appearance-none w-full text-sm rounded-md py-2 pl-4 shadow-sm" type="text" placeholder="New key" value={element.key} onChange={(e) => handleParameterChange(index, e.target.value)}></input>
+              </div>
+              <div className="col-span-5">
+                <input className="bg-zinc-700 text-gray-200 focus:outline-none appearance-none w-full text-sm rounded-md py-2 pl-4 shadow-sm" type="text" placeholder="New value" value={element.value} onChange={(e) => handleParameterChange(index, undefined, e.target.value)}></input>
+              </div>
+              <div className="col-span-1 flex gap-4 items-center justify-end">
+              <button className="text-2xl text-green-600 hover:text-green-500 text-center">
+                  <MdCheckBox />
+                </button>
+                <button className="text-red-600 hover:text-red-500 text-center" onClick={() => handleDeleteParameterClick(index)}>
+                  <ImCross />
+                </button>
+              </div>
             </div>
-            <div className="col-span-4">
-              <input className=" w-full bg-zinc-700 text-gray-200 py-2 pl-2 focus:outline-none" type="text" placeholder="Value" value={element.value} onChange={(e) => handleParameterChange(index, undefined, e.target.value)} />
-            </div>
-            <div className="col-span-2">
-              <button className="h-full w-full font-bold text-white bg-red-500 hover:bg-red-600 transition-colors rounded-md" onClick={() => handleDeleteParameterClick(index)}>
-                Delete
-              </button>
-            </div>
-          </div>
         )
       })}
+
     </>
   )
 }
