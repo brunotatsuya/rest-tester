@@ -16,7 +16,7 @@ const Console: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="h-100">
       <div className="grid grid-cols-12 mt-6">
         <div className="col-span-3 md:col-span-2 lg:col-span-1 bg-zinc-800 text-white">
           <select className="h-12 w-full pl-4 pr-4 cursor-pointer font-extrabold text-sm bg-zinc-800 border-r border-zinc-600">
@@ -37,8 +37,8 @@ const Console: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 mt-6 gap-4">
-        <div className="col-span-12 md:col-span-6 h-96 bg-zinc-800">
+      <div className="grid grid-cols-12 mt-6 gap-4 h-100">
+        <div className="col-span-12 md:col-span-6 bg-zinc-800">
           <div className="border-gray-200 dark:border-gray-700 text-white">
 
             <Box sx={{ width: '100%' }}>
@@ -63,10 +63,10 @@ const Console: React.FC = () => {
 
           </div>
         </div>
-        <div className="col-span-12 md:col-span-6 h-96 bg-zinc-800"></div>
+        <div className="col-span-12 md:col-span-6 bg-zinc-800"></div>
       </div>
 
-    </>
+    </div>
   )
 }
 
